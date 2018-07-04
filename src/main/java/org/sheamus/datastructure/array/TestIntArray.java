@@ -45,6 +45,7 @@ public class TestIntArray {
                 if(index[h] == 0) {
                     break;
                 }
+
                 for (int q = index[h] - 1; q < myArray.length - 1; q++) {
                     myArray[q] = myArray[q + 1];
                 }
@@ -53,12 +54,13 @@ public class TestIntArray {
         }
         display(myArray);
 
-
-
     }
 
+    /**
+     * 展示数组
+     * @param myArray
+     */
     private static void display(int[] myArray) {
-        // 查询数据
         for(int arr : myArray) {
             System.out.print(arr + " ");
         }
