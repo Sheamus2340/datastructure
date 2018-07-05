@@ -97,23 +97,31 @@ public class Tree {
         }
     }
 
-    public void display() {
-        if(root == null) {
-            return;
-        }
-        Node current = root;
-        System.out.println("根：" + root.getKeyData());
-        //左 中 右
-       /* while(true) {
-            if(current.getLeftNode() != null) {//左子树不为空
-                current = current.getLeftNode();
-                System.out.println("左：" + current.getKeyData());
-            } else if(current.getRightNode() != null) {
-                current = current.getRightNode();
-                System.out.println("右：" + current.getKeyData());
-            }
-        }*/
+    /**
+     * 展示
+     * @param node
+     */
+    public void display(Node node) {
+        System.out.println(node.getKeyData());
+    }
 
+    /**
+     * 先序遍历：
+     *  先输出中间的节点
+     *  然后遍历左树
+     *  再遍历右树
+     *
+     */
+    public void preTraversing() {
+        preTraversing0(root);
+    }
+
+    public void preTraversing0(Node node) {
+        if(node != null) {
+            System.out.println(node.getKeyData());
+            preTraversing0(node.getLeftNode());
+            preTraversing0(node.getRightNode());
+        }
     }
 
 }
