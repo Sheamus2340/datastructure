@@ -124,4 +124,16 @@ public class Tree {
         }
     }
 
+    /**
+     * 求树的最大高度
+     * @param node
+     * @return
+     */
+    public int height(Node node) {
+        if(node != null) {
+            return Math.max(height(node.getLeftNode()),height(node.getRightNode())) + 1;
+        }
+        return 0;
+    }
+
 }
