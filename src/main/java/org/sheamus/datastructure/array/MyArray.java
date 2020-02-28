@@ -2,22 +2,27 @@ package org.sheamus.datastructure.array;
 
 /**
  * 数组的封装类
- * Created by Sheamus on 2018/7/4.
  */
 public class MyArray {
-    // 数组
+    /**
+     * 数组
+     */
     private int[] arr;
-    // 有效数组的大小
+    /**
+     * 有效数组的大小
+     */
     private int size;
-    // 数组的默认大小
-    private final int DEFAULTVALUE = 10;
+    /**
+     * 数组的默认大小
+     */
+    private static final int DEFAULT_VALUE = 10;
 
     public MyArray() {
-        arr = new int[DEFAULTVALUE];
+        arr = new int[DEFAULT_VALUE];
     }
 
-    public MyArray(int capcity) {
-        arr = new int[capcity];
+    public MyArray(int capacity) {
+        arr = new int[capacity];
     }
 
     /**
