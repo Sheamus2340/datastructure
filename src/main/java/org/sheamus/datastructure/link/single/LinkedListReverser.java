@@ -1,9 +1,10 @@
 package org.sheamus.datastructure.link.single;
 
 /**
+ * 链表翻转
  * Created by Sheamus on 2018/7/10.
  */
-public enum LinkedListReversor {
+public enum LinkedListReverser {
     RECURSION("递归") {
         @Override
         public Node execute(Node node) {
@@ -34,7 +35,7 @@ public enum LinkedListReversor {
     };
     private String strategy;
 
-    private LinkedListReversor(String strategy) {
+    private LinkedListReverser(String strategy) {
         this.strategy = strategy;
     }
 

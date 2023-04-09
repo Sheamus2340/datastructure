@@ -18,12 +18,12 @@ public class SingleLinkedListTest {
         E.next = F;
         printList(A);
 
-        LinkedListReversor reversor = LinkedListReversor.RECURSION;
+        LinkedListReverser reversor = LinkedListReverser.RECURSION;
         System.out.println(reversor.getStrategy() + ":");
         Node tmp = reversor.execute(A);
         print(tmp);
         System.out.println();
-        reversor = LinkedListReversor.NO_RECURSION;
+        reversor = LinkedListReverser.NO_RECURSION;
         System.out.println(reversor.getStrategy() + ":");
         print(reversor.execute(tmp));
 
@@ -31,11 +31,11 @@ public class SingleLinkedListTest {
 
 
     public static void printList(Node node) {
-        if(node == null) {
+        if (node == null) {
             System.out.println();
         } else {
             System.out.print(node.data);
-            if(node.next != null) {
+            if (node.next != null) {
                 System.out.print("->");
             }
             printList(node.next);
@@ -44,7 +44,7 @@ public class SingleLinkedListTest {
 
 
     private static void print(Node node) {
-        while(true) {
+        while (true) {
             System.out.print(node.data);
             node = node.next;
             if (node != null) {
