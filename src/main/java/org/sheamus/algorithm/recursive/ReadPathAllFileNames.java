@@ -1,4 +1,4 @@
-package org.sheamus.datastructure.recursive;
+package org.sheamus.algorithm.recursive;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package org.sheamus.datastructure.recursive.age;
+package org.sheamus.algorithm.recursive.age;
 
 /**
  * Created by Sheamus on 2018/7/10.
