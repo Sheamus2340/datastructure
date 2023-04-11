@@ -19,5 +19,9 @@ public class Stack<T> {
         return (T) linkedList.removeNode();
     }
 
+    public boolean isEmpty() {
+        return linkedList.getHead() == null ? true : false;
+    }
+
 
 }

@@ -10,6 +10,10 @@ public class SingleLinkedList<T> {
     public SingleLinkedList() {
     }
 
+    public Node getHead() {
+        return head;
+    }
+
     public SingleLinkedList(Node head) {
         this.head = head;
     }

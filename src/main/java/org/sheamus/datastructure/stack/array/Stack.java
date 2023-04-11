@@ -28,6 +28,10 @@ public class Stack<T> {
         return data[--index];
     }
 
+    public boolean isEmpty() {
+        return index == 0 ? true : false;
+    }
+
     public static void main(String[] args) {
         Stack stack = new Stack(3);
         stack.push(1);
