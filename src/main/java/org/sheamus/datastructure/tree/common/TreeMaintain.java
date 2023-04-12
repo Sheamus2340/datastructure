@@ -299,15 +299,15 @@ public class TreeMaintain {
      * 1. 找整个递归的终止条件：递归应该在什么时候结束？
      * 2. 找返回值：应该给上一级返回什么信息？
      * 3. 本级递归应该做什么：在这一级递归中，应该完成什么任务？
-     *
+     * <p>
      * 求二叉树的最大深度
      * 1. 找终止条件。什么情况下递归结束？
      * 当然是树为空的时候，此时树的深度为0，递归就结束了。
-     *
+     * <p>
      * 2.找返回值。应该返回什么？题目求的是树的最大深度，
      * 我们需要从每一级得到的信息自然是当前这一级对应的树的最大深度，
      * 因此我们的返回值应该是当前树的最大深度，这一步可以结合第三步来看。
-     *
+     * <p>
      * 3.本级递归应该做什么。首先，还是强调要走出之前的思维误区，递归后我们眼里的树一定是这个样子的，
      * 看下图。此时就三个节点：root、rootleft、rootright，其中根据第二步，rootleft和rootright分别记录的是root的左右子树的最大深度。那么本级递归应该做什么就很明确了，
      * 自然就是在root的左右子树中选择较大的一个，再加上1就是以root为根的子树的最大深度了，然后再返回这个深度即可。
@@ -323,19 +323,111 @@ public class TreeMaintain {
         return Math.max(leftDeeps, rightDeeps) + 1;
     }
 
+    /**
+     * 判断二叉树是否对称
+     * 1. 层级遍历，查看是否层级堆成
+     *
+     * @param root
+     * @return
+     */
+    public boolean isSymmetry(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        // 用于层级遍历存放元素的容器
+        Deque<TreeNode> deque = new ArrayDeque<>();
+        // 存放每一层和对应的元素
+        Map<Integer, List<TreeNode>> levelNodes = new HashMap<>();
+        // 记录层
+        Integer level = 0;
+        // 当前的节点
+        TreeNode curNode = root;
+        deque.offer(curNode);
+
+        while (deque.size() != 0) {
+            int size = deque.size();
+            ++level;
+            // 层的元素
+            List<TreeNode> treeNodes = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode poll = deque.poll();
+                treeNodes.add(poll);
+                if (poll.leftNode != null) {
+                    deque.add(poll.leftNode);
+                    if (poll.rightNode == null) {
+                        TreeNode treeNode = new TreeNode();
+                        deque.add(treeNode);
+                    }
+                }
+
+                if (poll.rightNode != null) {
+                    if (poll.leftNode == null) {
+                        TreeNode treeNode = new TreeNode();
+                        deque.add(treeNode);
+                    }
+                    deque.add(poll.rightNode);
+                }
+
+            }
+
+            levelNodes.put(level, treeNodes);
+        }
+
+        // 判断每一层是否对称
+        Set<Map.Entry<Integer, List<TreeNode>>> entries = levelNodes.entrySet();
+        Iterator<Map.Entry<Integer, List<TreeNode>>> iterator = entries.iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, List<TreeNode>> next = iterator.next();
+            List<TreeNode> value = next.getValue();
+            boolean flag = isSys(value);
+            if (!flag) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * 集合是否对称
+     *
+     * @param value
+     * @return
+     */
+    public boolean isSys(List<TreeNode> value) {
+        for (int i = 0, j = value.size() - 1; i < j; i++, j--) {
+            TreeNode firstNode = value.get(i);
+            TreeNode lastNode = value.get(j);
+            if (firstNode == null && lastNode == null) {
+                continue;
+            }
+            if (firstNode != null && lastNode != null) {
+                if (firstNode.data == lastNode.data) {
+                    continue;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
     // 广度遍历
     public static void main(String[] args) {
-        TreeNode node1 = new TreeNode(1, null, null);
+        TreeNode node0 = new TreeNode(2, null, null);
+        //TreeNode node1 = new TreeNode(1, null, null);
         TreeNode node2 = new TreeNode(2, null, null);
 
-        TreeNode node3 = new TreeNode(3, null, null);
-        TreeNode node4 = new TreeNode(4, null, null);
-        TreeNode node5 = new TreeNode(5, null, null);
-        TreeNode node6 = new TreeNode(6, node1, node4);
-        TreeNode node7 = new TreeNode(7, null, node2);
+        TreeNode node3 = new TreeNode(7, node2, null);
+        //TreeNode node4 = new TreeNode(4, null, null);
+        TreeNode node5 = new TreeNode(6, null, null);
+        TreeNode node6 = new TreeNode(7, null, null);
+        TreeNode node7 = new TreeNode(6, null, node0);
 
         TreeNode node8 = new TreeNode(8, node5, node3);
-        TreeNode node9 = new TreeNode(9, node6, node7);
+        TreeNode node9 = new TreeNode(8, node6, node7);
 
         TreeNode root = new TreeNode(0, node8, node9);
 
@@ -381,6 +473,8 @@ public class TreeMaintain {
         });
         System.out.print("\n二叉树的最大深度--递归: ");
         System.out.println(treeMaintain.treeDeeps(root));
+        System.out.print("\n二叉树是否对称: ");
+        System.out.println(treeMaintain.isSymmetry(root));
     }
 
 
