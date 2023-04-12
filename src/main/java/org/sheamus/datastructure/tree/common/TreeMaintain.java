@@ -346,7 +346,6 @@ public class TreeMaintain {
 
         while (deque.size() != 0) {
             int size = deque.size();
-            ++level;
             // 层的元素
             List<TreeNode> treeNodes = new ArrayList<>();
             for (int i = 0; i < size; i++) {
@@ -370,7 +369,7 @@ public class TreeMaintain {
 
             }
 
-            levelNodes.put(level, treeNodes);
+            levelNodes.put(++level, treeNodes);
         }
 
         // 判断每一层是否对称
