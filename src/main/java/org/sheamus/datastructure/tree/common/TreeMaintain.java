@@ -113,6 +113,7 @@ public class TreeMaintain {
 
     /**
      * 双栈实现
+     * 第一个栈的打印顺序是
      * 左、右、根 -> 根、右、左
      * 和先序遍历有点类似
      *
@@ -123,27 +124,28 @@ public class TreeMaintain {
             return;
         }
         Stack<TreeNode> stack = new Stack<>();
+        // 缓存节点数据
         Stack<TreeNode> stackReverse = new Stack<>();
 
         stack.push(root);
-        TreeNode curNode;
+        TreeNode cur;
 
         while (!stack.isEmpty()) {
-            curNode = stack.pop();
-            stackReverse.push(curNode);
+            cur = stack.pop();
+            stackReverse.push(cur);
 
-            if (curNode.left != null) {
-                stack.push(curNode.left);
+            if (cur.left != null) {
+                stack.push(cur.left);
             }
 
-            if (curNode.right != null) {
-                stack.push(curNode.right);
+            if (cur.right != null) {
+                stack.push(cur.right);
             }
         }
 
         while (!stackReverse.isEmpty()) {
-            curNode = stackReverse.pop();
-            System.out.print(curNode.data + "\t");
+            cur = stackReverse.pop();
+            System.out.print(cur.data + "\t");
         }
 
     }
@@ -159,14 +161,14 @@ public class TreeMaintain {
         }
         Stack<TreeNode> stack = new Stack<>();
         // 当前处理节点
-        TreeNode curNode = root;
+        TreeNode cur = root;
         // 处理过的节点
         TreeNode preNode = null;
-        while (curNode != null || !stack.isEmpty()) {
+        while (cur != null || !stack.isEmpty()) {
             //每次先找到最左边的节点
-            while (curNode != null) {
-                stack.push(curNode);
-                curNode = curNode.left;
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
             }
             //弹出栈顶
             TreeNode node = stack.pop();
@@ -180,7 +182,7 @@ public class TreeMaintain {
                 //该节点入栈
                 stack.push(node);
                 //先访问右边
-                curNode = node.right;
+                cur = node.right;
             }
         }
     }
