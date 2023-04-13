@@ -183,6 +183,56 @@ public class TreeMaintain {
                 curNode = node.right;
             }
         }
+    }
+
+    /**
+     * 双指针实现后序遍历
+     *
+     * @param root
+     */
+    public void postOrderNotRecursiveDoublePoint2(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        // 表示上次操作的元素的位置，即打印的节点
+        TreeNode pre = null;
+        while (!stack.isEmpty()) {
+            // 当前操作的节点
+            TreeNode cur = stack.peek();
+            // 一共需要处理7种情况：
+            /**
+             * 1. 左、右节点都是空，那么弹出打印当前节点打印； - 3
+             * 2. 左节点为空，右节点不为空，并且上次处理节点不是右节点，那么将右节点入栈； - 2
+             * 3. 左节点不为空，并且上次处理节点不是左节点也不是右节点，那么将左节点入栈； - 1
+             * 4. 左节点不为空，右节点为空，并且上次处理节点是左节点，那么将右节点入栈； - 2
+             * 5. 左右节点都不为空，并且上次处理节点不是左节点也不是右节点，那么将左节点入栈； - 1
+             * 6. 左右节点都不为空，并且上次处理节点是左节点，那么将右节点入栈； - 2
+             * 7. 左右节点都不为空，并且上次处理节点是右节点，那么弹出打印当前节点打印；- 3
+             *
+             * 处理结果的汇总：
+             * 1. 左子点入栈：
+             *    条件是：左节点不为空，并且上次处理节点不是左节点 || 左右节点都不为空，并且上次处理节点不是左节点也不是右节点
+             * 2. 右节点入栈：
+             *    条件是：左节点为空，右节点不为空，并且上次处理节点不是右节点 || 左节点不为空，右节点为空，并且上次处理节点是左节点 || 左右节点都不为空，并且上次处理节点是左节点
+             * 3. 打印节点：
+             *    条件是：左、右节点都是空 || 左右节点都不为空，并且上次处理节点是右节点
+             */
+            if (cur.left != null && pre != cur.left && pre != cur.right) { // 左节点没有处理
+                stack.push(cur.left);
+            } else if (cur.right != null && pre != cur.right) { // 右节点没有处理
+                stack.push(cur.right);
+            } else { // 处理当前节点
+                // 弹出即打印
+                TreeNode pop = stack.pop();
+                System.out.print(pop.data + "\t");
+                // 标记上次处理的节点
+                pre = cur;
+            }
+        }
 
     }
 
@@ -434,6 +484,8 @@ public class TreeMaintain {
         treeMaintain.postOrderNotRecursiveDoubleStack(root);
         System.out.println("\n后序遍历--非递归模式-双指针实现");
         treeMaintain.postOrderNotRecursiveDoublePoint(root);
+        System.out.println("\n后序遍历--非递归模式-双指针实现2");
+        treeMaintain.postOrderNotRecursiveDoublePoint2(root);
         System.out.println("\n广度优先遍历");
         treeMaintain.bfs(root);
         System.out.println("\n广度优先遍历--foreach模式");
