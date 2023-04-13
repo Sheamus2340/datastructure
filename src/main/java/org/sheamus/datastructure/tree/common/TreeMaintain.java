@@ -98,6 +98,33 @@ public class TreeMaintain {
         }
     }
 
+    /**
+     * 实现思路
+     * 使用一个栈和一个辅助引用：
+     * 核心思想是看成左节点的遍历
+     *  1和2的区别：
+     *  2没有子问题的概念，巧妙使用 cur 引用变量
+     *
+     * @param root
+     */
+    public void inOrderNotRecursive2(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while (!stack.isEmpty() || cur != null) {
+            if (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            } else {
+                cur = stack.pop();
+                System.out.print(cur.data + "\t");
+                cur = cur.right;
+            }
+        }
+    }
+
     // 后序遍历
     // 递归方式
     public void postOrderRecursive(TreeNode root) {
@@ -478,6 +505,8 @@ public class TreeMaintain {
         treeMaintain.inOrderRecursive(root);
         System.out.println("\n中序遍历--非递归模式");
         treeMaintain.inOrderNotRecursive(root);
+        System.out.println("\n中序遍历--非递归模式-2");
+        treeMaintain.inOrderNotRecursive2(root);
         System.out.println("\n中序遍历--非递归模式-mirror模式");
         treeMaintain.inOrderMirrorNonRecursive(root);
         System.out.println("\n后序遍历--递归模式");
