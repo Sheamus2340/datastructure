@@ -3,15 +3,15 @@ package org.sheamus.datastructure.tree.common;
 public class TreeNode {
 
     int data = Integer.MIN_VALUE;
-    TreeNode leftNode;
-    TreeNode rightNode;
+    TreeNode left;
+    TreeNode right;
 
     public TreeNode() {}
 
-    public TreeNode(int data, TreeNode leftNode, TreeNode rightNode) {
+    public TreeNode(int data, TreeNode left, TreeNode right) {
         this.data = data;
-        this.leftNode = leftNode;
-        this.rightNode = rightNode;
+        this.left = left;
+        this.right = right;
     }
 
 }

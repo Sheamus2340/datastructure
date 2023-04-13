@@ -22,8 +22,8 @@ public class TreeMaintain {
             return;
         }
         System.out.print(root.data + "\t");
-        preOrderRecursive(root.leftNode);
-        preOrderRecursive(root.rightNode);
+        preOrderRecursive(root.left);
+        preOrderRecursive(root.right);
     }
 
     // 非递归方式
@@ -50,11 +50,11 @@ public class TreeMaintain {
         while (!stack.isEmpty()) {
             TreeNode pop = stack.pop();
             System.out.print(pop.data + "\t");
-            if (pop.rightNode != null) {
-                stack.push(pop.rightNode);
+            if (pop.right != null) {
+                stack.push(pop.right);
             }
-            if (pop.leftNode != null) {
-                stack.push(pop.leftNode);
+            if (pop.left != null) {
+                stack.push(pop.left);
             }
         }
     }
@@ -65,9 +65,9 @@ public class TreeMaintain {
         if (root == null) {
             return;
         }
-        inOrderRecursive(root.leftNode);
+        inOrderRecursive(root.left);
         System.out.print(root.data + "\t");
-        inOrderRecursive(root.rightNode);
+        inOrderRecursive(root.right);
     }
 
     //非递归方式
@@ -88,12 +88,12 @@ public class TreeMaintain {
         while (!stack.isEmpty() || curNode != null) {
             while (curNode != null) {
                 stack.push(curNode);
-                curNode = curNode.leftNode;
+                curNode = curNode.left;
             }
             if (!stack.isEmpty()) {
                 TreeNode node = stack.pop();
                 System.out.print(node.data + "\t");
-                curNode = node.rightNode;
+                curNode = node.right;
             }
         }
     }
@@ -104,8 +104,8 @@ public class TreeMaintain {
         if (root == null) {
             return;
         }
-        postOrderRecursive(root.leftNode);
-        postOrderRecursive(root.rightNode);
+        postOrderRecursive(root.left);
+        postOrderRecursive(root.right);
         System.out.print(root.data + "\t");
     }
 
@@ -132,12 +132,12 @@ public class TreeMaintain {
             curNode = stack.pop();
             stackReverse.push(curNode);
 
-            if (curNode.leftNode != null) {
-                stack.push(curNode.leftNode);
+            if (curNode.left != null) {
+                stack.push(curNode.left);
             }
 
-            if (curNode.rightNode != null) {
-                stack.push(curNode.rightNode);
+            if (curNode.right != null) {
+                stack.push(curNode.right);
             }
         }
 
@@ -166,12 +166,12 @@ public class TreeMaintain {
             //每次先找到最左边的节点
             while (curNode != null) {
                 stack.push(curNode);
-                curNode = curNode.leftNode;
+                curNode = curNode.left;
             }
             //弹出栈顶
             TreeNode node = stack.pop();
             //如果该元素的右边没有或是已经访问过
-            if (node.rightNode == null || node.rightNode == preNode) {
+            if (node.right == null || node.right == preNode) {
                 //访问中间的节点
                 System.out.print(node.data + "\t");
                 //且记录为访问过了
@@ -180,7 +180,7 @@ public class TreeMaintain {
                 //该节点入栈
                 stack.push(node);
                 //先访问右边
-                curNode = node.rightNode;
+                curNode = node.right;
             }
         }
 
@@ -201,12 +201,12 @@ public class TreeMaintain {
         while (deque.size() != 0) {
             TreeNode poll = deque.poll();
             System.out.print(poll.data + "\t");
-            if (poll.leftNode != null) {
-                deque.offer(poll.leftNode);
+            if (poll.left != null) {
+                deque.offer(poll.left);
             }
 
-            if (poll.rightNode != null) {
-                deque.offer(poll.rightNode);
+            if (poll.right != null) {
+                deque.offer(poll.right);
             }
         }
     }
@@ -234,12 +234,12 @@ public class TreeMaintain {
                 System.out.print(poll.data + "\t");
                 result.put(level, i + 1);
 
-                if (poll.leftNode != null) {
-                    deque.offer(poll.leftNode);
+                if (poll.left != null) {
+                    deque.offer(poll.left);
                 }
 
-                if (poll.rightNode != null) {
-                    deque.offer(poll.rightNode);
+                if (poll.right != null) {
+                    deque.offer(poll.right);
                 }
             }
         }
@@ -265,7 +265,6 @@ public class TreeMaintain {
 
         while (deque.size() != 0) {
             int size = deque.size();
-            ++level;
             List<TreeNode> levelNodes = new ArrayList<>();
             for (int i = 0; i < size; i++) {
                 TreeNode poll = deque.poll();
@@ -273,23 +272,23 @@ public class TreeMaintain {
                 System.out.print(poll.data + "\t");
                 levelNodes.add(poll);
 
-                if (poll.leftNode != null) {
-                    deque.offer(poll.leftNode);
-                    if (poll.rightNode == null) {
+                if (poll.left != null) {
+                    deque.offer(poll.left);
+                    if (poll.right == null) {
                         TreeNode nullNode = new TreeNode();
                         deque.offer(nullNode);
                     }
                 }
 
-                if (poll.rightNode != null) {
-                    if (poll.leftNode == null) {
+                if (poll.right != null) {
+                    if (poll.left == null) {
                         TreeNode nullNode = new TreeNode();
                         deque.offer(nullNode);
                     }
-                    deque.offer(poll.rightNode);
+                    deque.offer(poll.right);
                 }
             }
-            result.put(level, levelNodes);
+            result.put(++level, levelNodes);
         }
         return result;
     }
@@ -318,100 +317,85 @@ public class TreeMaintain {
         if (root == null) {
             return 0;
         }
-        int leftDeeps = treeDeeps(root.leftNode);
-        int rightDeeps = treeDeeps(root.rightNode);
+        int leftDeeps = treeDeeps(root.left);
+        int rightDeeps = treeDeeps(root.right);
         return Math.max(leftDeeps, rightDeeps) + 1;
     }
 
     /**
-     * 判断二叉树是否对称
-     * 1. 层级遍历，查看是否层级堆成
-     *
-     * @param root
-     * @return
+     * mirror版实现遍历
+     * Morris中序遍历
+     * 中序遍历
+     * 按照定义，在中序遍历中，对于一棵以root为根的二叉树，当访问完root的前驱节点后，需要回到root节点进行访问，然后再到root的右儿子进行访问。于是，我们可以每次访问到一棵子树时，找到它的前驱节点，把前驱节点的右儿子变为当前的根节点root，这样当遍历完前驱节点后，可以顺着这个右儿子回到根节点root。
+     * <p>
+     * 但问题是修改了该前驱节点的右儿子后什么时候再改回来呢？
+     * <p>
+     * 当第一次访问以root为根的子树时，找到它的前驱pre，此时pre的右儿子必定为空，于是把这个右儿子设置为root，以便以后根据这个指针回到root节点。
+     * 当第二次回到以root为根的子树时，再找到它的前驱pre，此时pre的右儿子已经被设置成了当前的root，这时把该右儿子重新设置成NULL，然后继续进行root的右儿子的遍历。于是完成了指针的修改。
+     * 在这样的情景下，寻找当前节点的前驱节点时，不仅需要判断其是否有右儿子，而且还要判断右儿子是否为当前的root节点，跟普通情况下的寻址前驱节点稍微多了一个条件。
+     * <p>
+     * 由于在每次遍历一个节点的时候都需要寻找其前驱节点，而寻找前驱节点的时间一般与树的高度相关，这样看上去算法的复杂度应该为O(nlogn)才对。但由于其只需要对有左儿子的节点才寻找前驱，于是所有寻找前驱时走过的路加起来至多为一棵树的节点数，例如在下文的例子中，只需要对以下节点寻找前驱：
+     * <p>
+     * 节点4：寻找路径为：2-3
+     * 节点2：寻找路径为：1
+     * 节点6：寻找路径为：5
+     * 于是寻找前驱加上遍历的运算量之和至多为2*n，n为节点个数，于是算法的复杂度为仍然为O(n)。
+     * -----------------------------------
+     * 二叉树遍历（递归、非递归、mirror）转
+     * https://blog.51cto.com/u_15064650/4205862
      */
-    public boolean isSymmetry(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
-        // 用于层级遍历存放元素的容器
-        Deque<TreeNode> deque = new ArrayDeque<>();
-        // 存放每一层和对应的元素
-        Map<Integer, List<TreeNode>> levelNodes = new HashMap<>();
-        // 记录层
-        Integer level = 0;
-        // 当前的节点
-        TreeNode curNode = root;
-        deque.offer(curNode);
-
-        while (deque.size() != 0) {
-            int size = deque.size();
-            // 层的元素
-            List<TreeNode> treeNodes = new ArrayList<>();
-            for (int i = 0; i < size; i++) {
-                TreeNode poll = deque.poll();
-                treeNodes.add(poll);
-                if (poll.leftNode != null) {
-                    deque.add(poll.leftNode);
-                    if (poll.rightNode == null) {
-                        TreeNode treeNode = new TreeNode();
-                        deque.add(treeNode);
-                    }
-                }
-
-                if (poll.rightNode != null) {
-                    if (poll.leftNode == null) {
-                        TreeNode treeNode = new TreeNode();
-                        deque.add(treeNode);
-                    }
-                    deque.add(poll.rightNode);
-                }
-
-            }
-
-            levelNodes.put(++level, treeNodes);
-        }
-
-        // 判断每一层是否对称
-        Set<Map.Entry<Integer, List<TreeNode>>> entries = levelNodes.entrySet();
-        Iterator<Map.Entry<Integer, List<TreeNode>>> iterator = entries.iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<Integer, List<TreeNode>> next = iterator.next();
-            List<TreeNode> value = next.getValue();
-            boolean flag = isSys(value);
-            if (!flag) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * 集合是否对称
-     *
-     * @param value
-     * @return
-     */
-    public boolean isSys(List<TreeNode> value) {
-        for (int i = 0, j = value.size() - 1; i < j; i++, j--) {
-            TreeNode firstNode = value.get(i);
-            TreeNode lastNode = value.get(j);
-            if (firstNode == null && lastNode == null) {
-                continue;
-            }
-            if (firstNode != null && lastNode != null) {
-                if (firstNode.data == lastNode.data) {
-                    continue;
-                } else {
-                    return false;
-                }
+    public void inOrderMirrorNonRecursive(TreeNode root) {
+        TreeNode cur = root;
+        while (cur != null) {
+            if (cur.left == null) {
+                System.out.print(cur.data + "\t");
+                cur = cur.right;
             } else {
-                return false;
+                TreeNode pre = cur.left;
+                while (pre.right != null && pre.right != cur) {
+                    pre = pre.right;
+                }
+                if (pre.right == null) { //第一次访问，修改pre的右儿子
+                    pre.right = cur;
+                    cur = cur.left;
+                } else {                  //第二次访问，改回pre的右儿子
+                    pre.right = null;
+                    System.out.print(cur.data + "\t");
+                    cur = cur.right;
+                }
             }
         }
-        return true;
     }
+
+    public void preOrderMirrorNonRecursive(TreeNode root) {
+        if (root == null)
+            return;
+        TreeNode cur = root;
+        TreeNode temp = null;
+        while (cur != null) {
+            if (cur.left == null) {
+                //左子树为空
+                System.out.print(cur.data + "\t");
+                cur = cur.right;
+            } else {
+                temp = cur.left;
+                //左子树不为空
+                while (temp.right != null && temp.right != cur) {
+                    temp = temp.right;
+                }
+                if (temp.right == cur) {
+                    temp.right = null;
+                    cur = cur.right;
+                } else {
+                    System.out.print(cur.data + "\t");
+                    temp.right = cur;
+                    cur = cur.left;
+                }
+
+            }
+        }
+    }
+
 
     // 广度遍历
     public static void main(String[] args) {
@@ -436,10 +420,14 @@ public class TreeMaintain {
         treeMaintain.preOrderRecursive(root);
         System.out.println("\n前序遍历--非递归模式");
         treeMaintain.preOrderNotRecursive(root);
+        System.out.println("\n前序遍历--非递归模式-mirror");
+        treeMaintain.preOrderMirrorNonRecursive(root);
         System.out.println("\n中序遍历--递归模式");
         treeMaintain.inOrderRecursive(root);
         System.out.println("\n中序遍历--非递归模式");
         treeMaintain.inOrderNotRecursive(root);
+        System.out.println("\n中序遍历--非递归模式-mirror模式");
+        treeMaintain.inOrderMirrorNonRecursive(root);
         System.out.println("\n后序遍历--递归模式");
         treeMaintain.postOrderRecursive(root);
         System.out.println("\n后序遍历--非递归模式-双栈实现");
@@ -472,8 +460,6 @@ public class TreeMaintain {
         });
         System.out.print("\n二叉树的最大深度--递归: ");
         System.out.println(treeMaintain.treeDeeps(root));
-        System.out.print("\n二叉树是否对称: ");
-        System.out.println(treeMaintain.isSymmetry(root));
     }
 
 
