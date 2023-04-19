@@ -387,7 +387,7 @@ public class TreeMaintain {
      * 因此我们的返回值应该是当前树的最大深度，这一步可以结合第三步来看。
      * <p>
      * 3.本级递归应该做什么。首先，还是强调要走出之前的思维误区，递归后我们眼里的树一定是这个样子的，
-     * 看下图。此时就三个节点：root、rootleft、rootright，其中根据第二步，rootleft和rootright分别记录的是root的左右子树的最大深度。那么本级递归应该做什么就很明确了，
+     * 看下图。此时就三个节点：root、root.left、root.right，其中根据第二步，root.left和root.right分别记录的是root的左右子树的最大深度。那么本级递归应该做什么就很明确了，
      * 自然就是在root的左右子树中选择较大的一个，再加上1就是以root为根的子树的最大深度了，然后再返回这个深度即可。
      *
      * @param root

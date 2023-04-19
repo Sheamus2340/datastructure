@@ -30,6 +30,7 @@ public class TreeRecursive {
 
     /**
      * 深度遍历
+     * 递归实现对称
      *
      * @param left
      * @param right
@@ -53,16 +54,22 @@ public class TreeRecursive {
         return dfs(left.left, right.right) && dfs(left.right, right.left);
     }
 
+    /**
+     * 非递归实现对称
+     *
+     * @param root
+     * @return
+     */
     public boolean isSymmetricNotRecursive(TreeNode root) {
         if (root == null || (root.left == null && root.right == null)) {
             return true;
         }
         //用队列保存节点
-        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
         //将根节点的左右孩子放到队列中
         queue.add(root.left);
         queue.add(root.right);
-        while (queue.size() > 0) {
+        while (!queue.isEmpty()) {
             //从队列中取出两个节点，再比较这两个节点
             TreeNode left = queue.removeFirst();
             TreeNode right = queue.removeFirst();
@@ -70,6 +77,7 @@ public class TreeRecursive {
             if (left == null && right == null) {
                 continue;
             }
+            // 其中一个节点是空的
             if (left == null || right == null) {
                 return false;
             }
@@ -83,7 +91,6 @@ public class TreeRecursive {
             queue.add(left.right);
             queue.add(right.left);
         }
-
         return true;
     }
 
