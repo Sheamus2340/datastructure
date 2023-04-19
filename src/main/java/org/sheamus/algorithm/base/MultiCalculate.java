@@ -5,6 +5,9 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 加减乘除计算器
+ */
 public class MultiCalculate {
 
     static Map<Character, Integer> map = new HashMap<Character, Integer>() {{

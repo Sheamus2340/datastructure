@@ -1,6 +1,7 @@
 package org.sheamus.algorithm.dp;
 
 public class LengthOfLIS {
+
     public int lengthOfLIS(int[] nums) {
         // dp[i] 表示与i结尾的最长严格子序列的长度；
         // dp[i+1] = dp[i] , dp[i] + 1 判断 nums[i+1] > nums[i]
@@ -11,10 +12,10 @@ public class LengthOfLIS {
                 dp[i] = 1;
                 continue;
             }
-            if (nums[i] > nums[i-1]) {
-                dp[i] = dp[i-1] + 1;
+            if (nums[i] > nums[i - 1]) {
+                dp[i] = dp[i - 1] + 1;
             } else {
-                dp[i] = dp[i-1];
+                dp[i] = dp[i - 1];
             }
         }
 
@@ -29,6 +30,6 @@ public class LengthOfLIS {
 
     public static void main(String[] args) {
         LengthOfLIS lengthOfLIS = new LengthOfLIS();
-        lengthOfLIS.lengthOfLIS(new int[] {4,10,4,3,8,9});
+        lengthOfLIS.lengthOfLIS(new int[]{4, 10, 4, 3, 8, 9});
     }
 }

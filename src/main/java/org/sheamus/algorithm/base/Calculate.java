@@ -2,8 +2,15 @@ package org.sheamus.algorithm.base;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.LinkedList;
 
 public class Calculate {
+    /**
+     * 执行字符串的结果
+     *
+     * @param s
+     * @return
+     */
     public static int calculate(String s) {
         // 存放所有的数字
         Deque<Integer> nums = new ArrayDeque<>();
@@ -13,8 +20,10 @@ public class Calculate {
         s = s.replaceAll(" ", "");
         // 存放所有的操作，包括 +/-
         Deque<Character> ops = new ArrayDeque<>();
+
         int n = s.length();
         char[] cs = s.toCharArray();
+
         for (int i = 0; i < n; i++) {
             char c = cs[i];
             if (c == '(') {

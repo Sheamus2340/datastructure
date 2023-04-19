@@ -1,10 +1,14 @@
 package org.sheamus.algorithm.base;
 
+/**
+ * 最长回文子串
+ */
 public class LongestPalindrome {
+
     public static String longestPalindrome(String s) {
         // 找出以 a 为中心最长回文，记录索引下标
         char[] arr = s.toCharArray();
-        int low = 0,high = 0;
+        int low = 0, high = 0;
         int max = 0;
         for (int i = 1; i < arr.length; i++) {
             int iL = i - 1;
@@ -33,7 +37,7 @@ public class LongestPalindrome {
     public static String longestPalindrome2(String s) {
         // 找出以 a 为中心最长回文，记录索引下标
         char[] arr = s.toCharArray();
-        int low = 0,high = 0;
+        int low = 0, high = 0;
         int max = 0;
         for (int i = 1; i < arr.length; i++) {
             int iL = i - 1;
@@ -97,8 +101,6 @@ public class LongestPalindrome {
         String s = longestPalindrome2("1211112");
         System.out.println(s);
     }
-
-
 
 
 }
