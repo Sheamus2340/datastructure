@@ -38,7 +38,7 @@ public class NextGreaterElements {
     }
 
     /**
-     * 单调递增栈
+     * 单调栈
      *
      * @param nums
      * @return
@@ -60,7 +60,8 @@ public class NextGreaterElements {
         for (int i = 0; i < n * 2 - 1; i++) {
 
             while (!stack.isEmpty() && nums[stack.peek()] < nums[i % n]) {
-                ret[stack.pop()] = nums[i % n];
+                Integer pop = stack.pop();
+                ret[pop] = nums[i % n];
             }
 
             // 放索引，取余得到索引位置
