@@ -1,5 +1,8 @@
 package org.sheamus.algorithm.dp;
 
+/**
+ * 最长严格子序列的最大长度
+ */
 public class LengthOfLIS {
 
     public int lengthOfLIS(int[] nums) {
@@ -30,6 +33,6 @@ public class LengthOfLIS {
 
     public static void main(String[] args) {
         LengthOfLIS lengthOfLIS = new LengthOfLIS();
-        lengthOfLIS.lengthOfLIS(new int[]{4, 10, 4, 3, 8, 9});
+        System.out.println(lengthOfLIS.lengthOfLIS(new int[]{4, 10, 4, 3, 8, 9}));
     }
 }

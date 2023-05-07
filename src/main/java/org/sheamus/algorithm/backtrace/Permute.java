@@ -5,8 +5,10 @@ import java.util.List;
 
 /**
  * 全排列
+ *  求给定数组的全排列
  */
 public class Permute {
+
     public List<List<Integer>> permute(int[] nums) {
         int len = nums.length;
         // 使用一个动态数组保存所有可能的全排列
