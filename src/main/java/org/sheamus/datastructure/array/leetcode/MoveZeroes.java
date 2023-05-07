@@ -41,6 +41,27 @@ public class MoveZeroes {
     }
 
     /**
+     * 双指针
+     *
+     * @param nums
+     */
+    public void moveZeroes3(int[] nums) {
+        if (nums == null) {
+            return;
+        }
+        //两个指针i和j
+        int j = 0;
+        for (int i = 0; i < nums.length; i++) {
+            //当前元素!=0，就把其交换到左边，等于0的交换到右边
+            if (nums[i] != 0) {
+                int tmp = nums[i];
+                nums[i] = nums[j];
+                nums[j++] = tmp;
+            }
+        }
+    }
+
+    /**
      * 查询下一个非零的数
      */
     public int findNext(int[] nums, int start, int len) {
@@ -76,5 +97,9 @@ public class MoveZeroes {
         int[] nums1 = new int[]{0, 1, 0, 3, 12};
         moveZeroes.moveZeroes2(nums1);
         moveZeroes.print(nums1);
+
+        int[] nums3 = new int[]{0, 1, 0, 3, 12};
+        moveZeroes.moveZeroes3(nums3);
+        moveZeroes.print(nums3);
     }
 }
