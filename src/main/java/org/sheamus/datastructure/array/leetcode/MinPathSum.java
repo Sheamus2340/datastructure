@@ -2,6 +2,9 @@ package org.sheamus.datastructure.array.leetcode;
 
 import java.util.Arrays;
 
+/**
+ * 二维数组中查找到最小数之和的路径
+ */
 public class MinPathSum {
     // 动态规划
     // dp[i][j] = Math.min(dp[i][j-1], dp[i-1][j]) + grid[i][j]

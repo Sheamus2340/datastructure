@@ -42,6 +42,7 @@ public class LongestPalindrome {
         for (int i = 1; i < arr.length; i++) {
             int iL = i - 1;
             int iH = i;
+            // 记录回文子串的长度
             int sum = 0;
             while (iL >= 0 && iH < arr.length) {
 
@@ -54,6 +55,7 @@ public class LongestPalindrome {
                 }
 
             }
+            // 判断是否大于原来最大的
             if (sum > max) {
                 max = sum;
                 low = iL + 1;
@@ -68,7 +70,6 @@ public class LongestPalindrome {
      * 1. 动态规划的定义：i，j之间如果是最长回文子串 p(i, j) = true
      * 2. 方程：p(i, j), p(i + 1, j - 1) = true && p(i) == p(j)
      */
-
     public static String longestPalindrome3(String str) {
         // 表示回文字符串的最大长度
         int max = 0;

@@ -3,7 +3,9 @@ package org.sheamus.algorithm.link;
 import java.util.Properties;
 
 public class TestNode {
+
     public static int len(ListNode head) {
+        // 哨兵节点
         ListNode pre = new ListNode(0, head);
         ListNode cur = pre;
         int len = 0;

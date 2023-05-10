@@ -37,9 +37,10 @@ package org.sheamus.datastructure.tree.leetcode;
  * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
  */
 public class IslandNum {
+
     // 主函数，计算岛屿数量
     public int numIslands(char[][] grid) {
-
+        // 记录岛屿数量
         int res = 0;
         int m = grid.length, n = grid[0].length;
 

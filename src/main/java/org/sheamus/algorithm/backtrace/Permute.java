@@ -5,10 +5,16 @@ import java.util.List;
 
 /**
  * 全排列
- *  求给定数组的全排列
+ * 求给定数组的全排列
  */
 public class Permute {
 
+    /**
+     * 数组的所有排列
+     *
+     * @param nums
+     * @return
+     */
     public List<List<Integer>> permute(int[] nums) {
         int len = nums.length;
         // 使用一个动态数组保存所有可能的全排列
@@ -24,9 +30,19 @@ public class Permute {
         return res;
     }
 
+    /**
+     *
+     * @param nums
+     * @param len
+     * @param depth
+     * @param path
+     * @param used
+     * @param res
+     */
     private void dfs(int[] nums, int len, int depth,
                      List<Integer> path, boolean[] used,
                      List<List<Integer>> res) {
+
         if (depth == len) {
             res.add(new ArrayList<>(path));
             return;

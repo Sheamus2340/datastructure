@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class MergeNode {
+
     public ListNode mergeKLists(ListNode[] lists) {
         // 分治
         // 堆排序 + 优化堆排序

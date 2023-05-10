@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 找出三数之和为0
+ */
 public class ThreeNumSum {
 
     public List<List<Integer>> threeSum(int[] nums) {

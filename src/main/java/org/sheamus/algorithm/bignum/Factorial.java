@@ -5,6 +5,7 @@ package org.sheamus.algorithm.bignum;
  * Created by Sheamus on 2018/7/20.
  */
 public class Factorial {
+
     public static void main(String[] args) {
         int[] sum = new int[100];
         sum[sum.length - 1] = 1;

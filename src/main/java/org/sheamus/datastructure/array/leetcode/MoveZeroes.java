@@ -49,7 +49,7 @@ public class MoveZeroes {
         if (nums == null) {
             return;
         }
-        //两个指针i和j
+        //两个指针i和j, j 是记录 0 索引的位置
         int j = 0;
         for (int i = 0; i < nums.length; i++) {
             //当前元素!=0，就把其交换到左边，等于0的交换到右边
