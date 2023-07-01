@@ -20,6 +20,13 @@ package org.sheamus.datastructure.array.leetcode;
  */
 public class MaxProfit {
 
+    /**
+     * 使用两个变量来控制收益；
+     * minPrice 来标记最低价格
+     * maxProfit 来标记最大的收益
+     * @param prices
+     * @return
+     */
     public int maxProfit(int prices[]) {
         int minprice = Integer.MAX_VALUE;
         int maxprofit = 0;
