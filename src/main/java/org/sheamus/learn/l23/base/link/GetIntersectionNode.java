@@ -6,6 +6,6 @@ package org.sheamus.learn.l23.base.link;
  */
 public class GetIntersectionNode {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-
+        return null;
     }
 }
