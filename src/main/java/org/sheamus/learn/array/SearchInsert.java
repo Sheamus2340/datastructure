@@ -8,7 +8,7 @@ public class SearchInsert {
     public int searchInsert(int[] nums, int target) {
         int len = nums.length;
         //简单的二分查找
-        if (nums == null || len == 0) {
+        if (len == 0) {
             return 0;
         }
         //小知识点： java数组的最大长度为int的最大值
