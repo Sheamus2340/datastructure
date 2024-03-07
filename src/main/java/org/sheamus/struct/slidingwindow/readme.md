@@ -1,37 +1,16 @@
-package org.sheamus.algorithm.string.leetcode;
+# 简介
+    滑动窗口是一种特殊的快慢指针的形式。只是需要在一般快慢指针的格式下进行有条件的向后移动。
+# 适合场景
+    子串问题
+# 主要思想
 
-import java.util.ArrayList;
+# 代码框架
+最小覆盖串
+```java
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-/**
- * https://leetcode.cn/problems/minimum-window-substring/solution/tong-su-qie-xiang-xi-de-miao-shu-hua-dong-chuang-k/
- */
-public class MinWindow {
-
-//    public String minWindow(String s, String t) {
-//        Map<Character, Integer> map = new HashMap<>();
-//        List<Character> list = new ArrayList<>();
-//        char[] sChars = s.toCharArray();
-//        char[] tChars = t.toCharArray();
-//        int sLen = sChars.length;
-//        int tLen = tChars.length;
-//        int left = 0;
-//        int right = 0;
-//
-//        for (int i = 0; i < sLen; i++) {
-//            if (map.containsKey(sChars[i]) && list.contains(tChars[i])) {
-//                left = Math.max(left, sChars[i] + 1);
-//            }
-//            map.put(sChars[i], i);
-//            right = Math.min(right, i - left + 1);
-//        }
-//        return s.substring(left, right);
-//    }
-
-    public String minWindow2(String s, String t) {
-
+class Solution {
+    public String slidingWindow(String t, String s) {
         Map<Character, Integer> need = new HashMap<>();
         Map<Character, Integer> window = new HashMap<>();
 
@@ -40,6 +19,7 @@ public class MinWindow {
         }
 
         int left = 0, right = 0;
+        // 窗⼝中满⾜ need 条件的字符个数，如果 valid 和 need.size 的⼤⼩相同，则说明窗⼝已满⾜条件，已经完全覆盖了串 T
         int valid = 0;
         // 记录最小覆盖子串的起始索引及长度
         int start = 0, len = Integer.MAX_VALUE;
@@ -81,10 +61,5 @@ public class MinWindow {
         // 返回最小覆盖子串
         return len == Integer.MAX_VALUE ? "" : s.substring(start, start + len);
     }
-
-    public static void main(String[] args) {
-        MinWindow minWindow = new MinWindow();
-        System.out.println(minWindow.minWindow2("ADOBECODEBANC", "ABC"));
-    }
-
 }
+```
