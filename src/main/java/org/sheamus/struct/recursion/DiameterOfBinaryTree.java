@@ -5,37 +5,45 @@ package org.sheamus.struct.recursion;
  */
 public class DiameterOfBinaryTree {
 
-    MaxDepth maxDepth = new MaxDepth();
+    int maxDiameter = 0;
+
 
     /**
      * 所谓⼆叉树的「直径」⻓度，就是任意两个结点之间的路径⻓度。
      * 最⻓「直径」并不⼀定要穿过根结点，⽐如下⾯这棵⼆叉树：
      *
+     * 遍历思维：
+     * 1. 求每一个节点的左右深度之和；
+     * 2. 求出结果中最大的；
+     *
      * @param root
      * @return
      */
     public int diameterOfBinaryTree(TreeNode root) {
-        // 分拆这个问题
-        // 最大直径 = 比较每个节点的左子树深度 + 右子树深度
         if (root == null) {
             return 0;
         }
+        maxDepth(root);
 
-        int leftMax = diameterOfBinaryTree(root.left);
-        int rightMax = diameterOfBinaryTree(root.right);
+        return maxDiameter;
+    }
 
-        if (root.left == null ) {
-
+    /**
+     * 求最大深度
+     * @param root
+     * @return
+     */
+    private int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
         }
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
 
 
-        int leftDepth = maxDepth.maxDepth2(root.left);
-        int rightDepth = maxDepth.maxDepth2(root.right);
+        maxDiameter = Math.max(maxDiameter, left + right);
 
-        leftDepth = leftDepth == 0 ? 0 : leftDepth - 1;
-        rightDepth = rightDepth == 0 ? 0 : rightDepth - 1;
-
-        return 1;
+        return Math.max(left ,right) + 1;
     }
 
     public static void main(String[] args) {
