@@ -33,4 +33,19 @@ public class MaxDepth {
         return level;
     }
 
+    public int maxD(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = maxD(root.left);
+        int right = maxD(root.right);
+
+        return Math.max(left, right) + 1;
+    }
+
+    public static void main(String[] args) {
+
+    }
+
 }
