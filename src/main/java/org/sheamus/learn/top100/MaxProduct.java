@@ -6,6 +6,7 @@ package org.sheamus.learn.top100;
 public class MaxProduct {
 
     public static int maxProduct(int[] nums) {
+
         // 定义变量 maxProduct 用于保存最大乘积
         int maxProduct = Integer.MIN_VALUE;
         // 定义变量 left 和 right 用于滑窗的左边界和右边界
