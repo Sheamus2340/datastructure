@@ -15,7 +15,9 @@ public class LengthOfLongestSubstring {
 
         int start = 0, end = 0;
         int maxLen = 0;
-        while (end < chars.length) {
+        int len = chars.length;
+
+        while (end < len) {
 
             // 不包含
             dic.put(chars[end], dic.getOrDefault(chars[end], 0) + 1);
